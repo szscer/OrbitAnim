@@ -1,5 +1,3 @@
-def animate_orbits(
-
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -34,17 +32,19 @@ planet, = ax.plot([], [], 'bo', markersize=8, label="Proxima b")
 
 # Initialization function
 def init():
-planet.set_data([], [])
-return planet,
+    planet.set_data([], [])
+    return planet,
 
 # Update function for animation
 def update(frame):
-planet.set_data(x_orbit[frame], y_orbit[frame])
-return planet,
+    planet.set_data(x_orbit[frame], y_orbit[frame])
+    return planet,
 
 # Create animation
 ani = animation.FuncAnimation(fig, update, frames=num_points, init_func=init, interval=50, blit=True)
 
 # Show animation
+if not plt.isinteractive():
+    plt.ion()
 plt.legend()
 plt.show()
